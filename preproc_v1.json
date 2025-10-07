@@ -1,0 +1,208 @@
+{
+  "numeric": [],
+  "categorical": [
+    "Breathing Problem",
+    "Fever",
+    "Dry Cough",
+    "Sore throat",
+    "Running Nose",
+    "Asthma",
+    "Chronic Lung Disease",
+    "Headache",
+    "Heart Disease",
+    "Diabetes",
+    "Hypertension",
+    "Fatigue ",
+    "Gastrointestinal "
+  ],
+  "numeric_imputation": {},
+  "numeric_ranges_train": {},
+  "categorical_vocabulary": {
+    "Breathing Problem": [
+      0,
+      1
+    ],
+    "Fever": [
+      0,
+      1
+    ],
+    "Dry Cough": [
+      0,
+      1
+    ],
+    "Sore throat": [
+      0,
+      1
+    ],
+    "Running Nose": [
+      0,
+      1
+    ],
+    "Asthma": [
+      0,
+      1
+    ],
+    "Chronic Lung Disease": [
+      0,
+      1
+    ],
+    "Headache": [
+      0,
+      1
+    ],
+    "Heart Disease": [
+      0,
+      1
+    ],
+    "Diabetes": [
+      0,
+      1
+    ],
+    "Hypertension": [
+      0,
+      1
+    ],
+    "Fatigue ": [
+      0,
+      1
+    ],
+    "Gastrointestinal ": [
+      0,
+      1
+    ]
+  },
+  "final_feature_order": [
+    {
+      "source": "Breathing Problem",
+      "kind": "onehot",
+      "category": 0
+    },
+    {
+      "source": "Breathing Problem",
+      "kind": "onehot",
+      "category": 1
+    },
+    {
+      "source": "Fever",
+      "kind": "onehot",
+      "category": 0
+    },
+    {
+      "source": "Fever",
+      "kind": "onehot",
+      "category": 1
+    },
+    {
+      "source": "Dry Cough",
+      "kind": "onehot",
+      "category": 0
+    },
+    {
+      "source": "Dry Cough",
+      "kind": "onehot",
+      "category": 1
+    },
+    {
+      "source": "Sore throat",
+      "kind": "onehot",
+      "category": 0
+    },
+    {
+      "source": "Sore throat",
+      "kind": "onehot",
+      "category": 1
+    },
+    {
+      "source": "Running Nose",
+      "kind": "onehot",
+      "category": 0
+    },
+    {
+      "source": "Running Nose",
+      "kind": "onehot",
+      "category": 1
+    },
+    {
+      "source": "Asthma",
+      "kind": "onehot",
+      "category": 0
+    },
+    {
+      "source": "Asthma",
+      "kind": "onehot",
+      "category": 1
+    },
+    {
+      "source": "Chronic Lung Disease",
+      "kind": "onehot",
+      "category": 0
+    },
+    {
+      "source": "Chronic Lung Disease",
+      "kind": "onehot",
+      "category": 1
+    },
+    {
+      "source": "Headache",
+      "kind": "onehot",
+      "category": 0
+    },
+    {
+      "source": "Headache",
+      "kind": "onehot",
+      "category": 1
+    },
+    {
+      "source": "Heart Disease",
+      "kind": "onehot",
+      "category": 0
+    },
+    {
+      "source": "Heart Disease",
+      "kind": "onehot",
+      "category": 1
+    },
+    {
+      "source": "Diabetes",
+      "kind": "onehot",
+      "category": 0
+    },
+    {
+      "source": "Diabetes",
+      "kind": "onehot",
+      "category": 1
+    },
+    {
+      "source": "Hypertension",
+      "kind": "onehot",
+      "category": 0
+    },
+    {
+      "source": "Hypertension",
+      "kind": "onehot",
+      "category": 1
+    },
+    {
+      "source": "Fatigue ",
+      "kind": "onehot",
+      "category": 0
+    },
+    {
+      "source": "Fatigue ",
+      "kind": "onehot",
+      "category": 1
+    },
+    {
+      "source": "Gastrointestinal ",
+      "kind": "onehot",
+      "category": 0
+    },
+    {
+      "source": "Gastrointestinal ",
+      "kind": "onehot",
+      "category": 1
+    }
+  ],
+  "preproc_version": "v1",
+  "trained_on": "2025-10-01"
+}
