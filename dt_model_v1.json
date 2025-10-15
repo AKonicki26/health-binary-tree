@@ -19,13 +19,18 @@
     }
   },
   "model_version": "v1",
+<<<<<<< HEAD
   "trained_on": "2025-10-08",
+=======
+  "trained_on": "2025-10-07",
+>>>>>>> f7480e0184259444778cdec0537f6ae6e68ff79b
   "tree": {
     "nodes": [
       {
         "feature_index": 8,
         "threshold": 0.5,
         "left": 1,
+<<<<<<< HEAD
         "right": 12,
         "value": [
           0.2174712771425793,
@@ -74,6 +79,12 @@
         "value": [
           0.6451450708869106,
           0.35485492911308936
+=======
+        "right": 2,
+        "value": [
+          0.2174712771425793,
+          0.7825287228574207
+>>>>>>> f7480e0184259444778cdec0537f6ae6e68ff79b
         ],
         "is_leaf": false
       },
@@ -89,7 +100,55 @@
         "is_leaf": true
       },
       {
+<<<<<<< HEAD
         "feature_index": 18,
+=======
+        "feature_index": 6,
+        "threshold": 0.5,
+        "left": 3,
+        "right": 4,
+        "value": [
+          0.36172513714489063,
+          0.6382748628551094
+        ],
+        "is_leaf": false
+      },
+      {
+        "feature_index": -2,
+        "threshold": -2.0,
+        "left": -1,
+        "right": -1,
+        "value": [
+          0.0,
+          1.0
+        ],
+        "is_leaf": true
+      },
+      {
+        "feature_index": 45,
+        "threshold": 0.5,
+        "left": 5,
+        "right": 12,
+        "value": [
+          0.514971675209064,
+          0.48502832479093605
+        ],
+        "is_leaf": false
+      },
+      {
+        "feature_index": 17,
+        "threshold": 0.5,
+        "left": 6,
+        "right": 11,
+        "value": [
+          0.6451450708869106,
+          0.35485492911308936
+        ],
+        "is_leaf": false
+      },
+      {
+        "feature_index": 19,
+>>>>>>> f7480e0184259444778cdec0537f6ae6e68ff79b
         "threshold": 0.5,
         "left": 7,
         "right": 10,
@@ -100,7 +159,11 @@
         "is_leaf": false
       },
       {
+<<<<<<< HEAD
         "feature_index": 42,
+=======
+        "feature_index": 43,
+>>>>>>> f7480e0184259444778cdec0537f6ae6e68ff79b
         "threshold": 0.5,
         "left": 8,
         "right": 9,

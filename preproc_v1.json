@@ -1,5 +1,9 @@
 {
   "numeric": [
+<<<<<<< HEAD
+=======
+    "Patient_ID",
+>>>>>>> f7480e0184259444778cdec0537f6ae6e68ff79b
     "Age",
     "Blood_Pressure",
     "Heart_Rate",
@@ -30,6 +34,10 @@
     "ICU_Admission"
   ],
   "numeric_imputation": {
+<<<<<<< HEAD
+=======
+    "Patient_ID": 500326.0,
+>>>>>>> f7480e0184259444778cdec0537f6ae6e68ff79b
     "Age": 50.0,
     "Blood_Pressure": 130.0,
     "Heart_Rate": 90.0,
@@ -37,6 +45,13 @@
     "Hospitalization_Days": 15.0
   },
   "numeric_ranges_train": {
+<<<<<<< HEAD
+=======
+    "Patient_ID": {
+      "min": 2.0,
+      "max": 1000000.0
+    },
+>>>>>>> f7480e0184259444778cdec0537f6ae6e68ff79b
     "Age": {
       "min": 1.0,
       "max": 99.0
@@ -146,10 +161,21 @@
   },
   "final_feature_order": [
     {
+<<<<<<< HEAD
       "source": "Age",
       "kind": "numeric"
     },
     {
+=======
+      "source": "Patient_ID",
+      "kind": "numeric"
+    },
+    {
+      "source": "Age",
+      "kind": "numeric"
+    },
+    {
+>>>>>>> f7480e0184259444778cdec0537f6ae6e68ff79b
       "source": "Blood_Pressure",
       "kind": "numeric"
     },
@@ -377,5 +403,9 @@
     }
   ],
   "preproc_version": "v1",
+<<<<<<< HEAD
   "trained_on": "2025-10-08"
+=======
+  "trained_on": "2025-10-07"
+>>>>>>> f7480e0184259444778cdec0537f6ae6e68ff79b
 }
