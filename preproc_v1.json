@@ -1,48 +1,77 @@
 {
-  "numeric": [],
+  "numeric": [
+    "Age",
+    "Blood_Pressure",
+    "Heart_Rate",
+    "Comorbidity_Count",
+    "Hospitalization_Days"
+  ],
   "categorical": [
-    "Breathing Problem",
     "Fever",
-    "Dry Cough",
-    "Sore throat",
-    "Running Nose",
-    "Asthma",
-    "Chronic Lung Disease",
+    "Cough",
+    "Sore_Throat",
+    "Fatigue",
     "Headache",
-    "Heart Disease",
+    "Breathlessness",
+    "Loss_of_Smell_Taste",
+    "Diarrhea",
+    "Chest_Pain",
+    "Body_Ache",
+    "Runny_Nose",
+    "Vomiting",
     "Diabetes",
     "Hypertension",
-    "Fatigue ",
-    "Gastrointestinal "
+    "Asthma",
+    "Obesity",
+    "Smoking",
+    "Vaccinated",
+    "Travel_History",
+    "Contact_with_Positive",
+    "ICU_Admission"
   ],
-  "numeric_imputation": {},
-  "numeric_ranges_train": {},
+  "numeric_imputation": {
+    "Age": 50.0,
+    "Blood_Pressure": 130.0,
+    "Heart_Rate": 90.0,
+    "Comorbidity_Count": 2.0,
+    "Hospitalization_Days": 15.0
+  },
+  "numeric_ranges_train": {
+    "Age": {
+      "min": 1.0,
+      "max": 99.0
+    },
+    "Blood_Pressure": {
+      "min": 80.0,
+      "max": 179.0
+    },
+    "Heart_Rate": {
+      "min": 60.0,
+      "max": 119.0
+    },
+    "Comorbidity_Count": {
+      "min": 0.0,
+      "max": 4.0
+    },
+    "Hospitalization_Days": {
+      "min": 0.0,
+      "max": 29.0
+    }
+  },
   "categorical_vocabulary": {
-    "Breathing Problem": [
-      0,
-      1
-    ],
     "Fever": [
       0,
       1
     ],
-    "Dry Cough": [
+    "Cough": [
       0,
       1
     ],
-    "Sore throat": [
+    "Sore_Throat": [
       0,
       1
     ],
-    "Running Nose": [
-      0,
-      1
-    ],
-    "Asthma": [
-      0,
-      1
-    ],
-    "Chronic Lung Disease": [
+    "Fatigue": [
       0,
       1
     ],
@@ -50,7 +79,31 @@
       0,
       1
     ],
-    "Heart Disease": [
+    "Breathlessness": [
+      0,
+      1
+    ],
+    "Loss_of_Smell_Taste": [
+      0,
+      1
+    ],
+    "Diarrhea": [
+      0,
+      1
+    ],
+    "Chest_Pain": [
+      0,
+      1
+    ],
+    "Body_Ache": [
+      0,
+      1
+    ],
+    "Runny_Nose": [
+      0,
+      1
+    ],
+    "Vomiting": [
       0,
       1
     ],
@@ -62,25 +115,55 @@
       0,
       1
     ],
-    "Fatigue ": [
+    "Asthma": [
       0,
       1
     ],
-    "Gastrointestinal ": [
+    "Obesity": [
+      0,
+      1
+    ],
+    "Smoking": [
+      0,
+      1
+    ],
+    "Vaccinated": [
+      0,
+      1
+    ],
+    "Travel_History": [
+      0,
+      1
+    ],
+    "Contact_with_Positive": [
+      0,
+      1
+    ],
+    "ICU_Admission": [
       0,
       1
     ]
   },
   "final_feature_order": [
     {
-      "source": "Breathing Problem",
-      "kind": "onehot",
-      "category": 0
+      "source": "Age",
+      "kind": "numeric"
     },
     {
-      "source": "Breathing Problem",
-      "kind": "onehot",
-      "category": 1
+      "source": "Blood_Pressure",
+      "kind": "numeric"
+    },
+    {
+      "source": "Heart_Rate",
+      "kind": "numeric"
+    },
+    {
+      "source": "Comorbidity_Count",
+      "kind": "numeric"
+    },
+    {
+      "source": "Hospitalization_Days",
+      "kind": "numeric"
     },
     {
       "source": "Fever",
@@ -93,52 +176,32 @@
       "category": 1
     },
     {
-      "source": "Dry Cough",
+      "source": "Cough",
       "kind": "onehot",
       "category": 0
     },
     {
-      "source": "Dry Cough",
+      "source": "Cough",
       "kind": "onehot",
       "category": 1
     },
     {
-      "source": "Sore throat",
+      "source": "Sore_Throat",
       "kind": "onehot",
       "category": 0
     },
     {
-      "source": "Sore throat",
+      "source": "Sore_Throat",
       "kind": "onehot",
       "category": 1
     },
     {
-      "source": "Running Nose",
+      "source": "Fatigue",
       "kind": "onehot",
       "category": 0
     },
     {
-      "source": "Running Nose",
-      "kind": "onehot",
-      "category": 1
-    },
-    {
-      "source": "Asthma",
-      "kind": "onehot",
-      "category": 0
-    },
-    {
-      "source": "Asthma",
-      "kind": "onehot",
-      "category": 1
-    },
-    {
-      "source": "Chronic Lung Disease",
-      "kind": "onehot",
-      "category": 0
-    },
-    {
-      "source": "Chronic Lung Disease",
+      "source": "Fatigue",
       "kind": "onehot",
       "category": 1
     },
@@ -153,12 +216,72 @@
       "category": 1
     },
     {
-      "source": "Heart Disease",
+      "source": "Breathlessness",
       "kind": "onehot",
       "category": 0
     },
     {
-      "source": "Heart Disease",
+      "source": "Breathlessness",
+      "kind": "onehot",
+      "category": 1
+    },
+    {
+      "source": "Loss_of_Smell_Taste",
+      "kind": "onehot",
+      "category": 0
+    },
+    {
+      "source": "Loss_of_Smell_Taste",
+      "kind": "onehot",
+      "category": 1
+    },
+    {
+      "source": "Diarrhea",
+      "kind": "onehot",
+      "category": 0
+    },
+    {
+      "source": "Diarrhea",
+      "kind": "onehot",
+      "category": 1
+    },
+    {
+      "source": "Chest_Pain",
+      "kind": "onehot",
+      "category": 0
+    },
+    {
+      "source": "Chest_Pain",
+      "kind": "onehot",
+      "category": 1
+    },
+    {
+      "source": "Body_Ache",
+      "kind": "onehot",
+      "category": 0
+    },
+    {
+      "source": "Body_Ache",
+      "kind": "onehot",
+      "category": 1
+    },
+    {
+      "source": "Runny_Nose",
+      "kind": "onehot",
+      "category": 0
+    },
+    {
+      "source": "Runny_Nose",
+      "kind": "onehot",
+      "category": 1
+    },
+    {
+      "source": "Vomiting",
+      "kind": "onehot",
+      "category": 0
+    },
+    {
+      "source": "Vomiting",
       "kind": "onehot",
       "category": 1
     },
@@ -183,26 +306,76 @@
       "category": 1
     },
     {
-      "source": "Fatigue ",
+      "source": "Asthma",
       "kind": "onehot",
       "category": 0
     },
     {
-      "source": "Fatigue ",
+      "source": "Asthma",
       "kind": "onehot",
       "category": 1
     },
     {
-      "source": "Gastrointestinal ",
+      "source": "Obesity",
       "kind": "onehot",
       "category": 0
     },
     {
-      "source": "Gastrointestinal ",
+      "source": "Obesity",
+      "kind": "onehot",
+      "category": 1
+    },
+    {
+      "source": "Smoking",
+      "kind": "onehot",
+      "category": 0
+    },
+    {
+      "source": "Smoking",
+      "kind": "onehot",
+      "category": 1
+    },
+    {
+      "source": "Vaccinated",
+      "kind": "onehot",
+      "category": 0
+    },
+    {
+      "source": "Vaccinated",
+      "kind": "onehot",
+      "category": 1
+    },
+    {
+      "source": "Travel_History",
+      "kind": "onehot",
+      "category": 0
+    },
+    {
+      "source": "Travel_History",
+      "kind": "onehot",
+      "category": 1
+    },
+    {
+      "source": "Contact_with_Positive",
+      "kind": "onehot",
+      "category": 0
+    },
+    {
+      "source": "Contact_with_Positive",
+      "kind": "onehot",
+      "category": 1
+    },
+    {
+      "source": "ICU_Admission",
+      "kind": "onehot",
+      "category": 0
+    },
+    {
+      "source": "ICU_Admission",
       "kind": "onehot",
       "category": 1
     }
   ],
   "preproc_version": "v1",
-  "trained_on": "2025-10-01"
+  "trained_on": "2025-10-08"
 }
