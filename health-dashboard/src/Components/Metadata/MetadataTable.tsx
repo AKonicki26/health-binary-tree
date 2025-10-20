@@ -50,26 +50,28 @@ const MetadataTable: React.FC<MetadataTableProps> = ({ csvPath, title }) => {
     return (
         <div className="metadata-table-container">
             {title && <h2 className="metadata-table-title">{title}</h2>}
-            <table className="metadata-table">
-                <thead>
-                {tableData.length > 0 && (
-                    <tr>
-                        {tableData[0].map((cell, index) => (
-                            <th key={index}>{cell}</th>
-                        ))}
-                    </tr>
-                )}
-                </thead>
-                <tbody>
-                {tableData.slice(1).map((row, rowIndex) => (
-                    <tr key={rowIndex}>
-                        {row.map((cell, cellIndex) => (
-                            <td key={cellIndex}>{cell}</td>
-                        ))}
-                    </tr>
-                ))}
-                </tbody>
-            </table>
+            <div className="table-wrapper">
+                <table className="metadata-table">
+                    <thead>
+                    {tableData.length > 0 && (
+                        <tr>
+                            {tableData[0].map((cell, index) => (
+                                <th key={index}>{cell}</th>
+                            ))}
+                        </tr>
+                    )}
+                    </thead>
+                    <tbody>
+                    {tableData.slice(1).map((row, rowIndex) => (
+                        <tr key={rowIndex}>
+                            {row.map((cell, cellIndex) => (
+                                <td key={cellIndex}>{cell}</td>
+                            ))}
+                        </tr>
+                    ))}
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 };
