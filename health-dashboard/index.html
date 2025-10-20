@@ -21,67 +21,6 @@
   <py-script src="/visualization.py"></py-script>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
-  <div id="csv-table-container"></div>
-  <div id="info-table-container"></div>
-
-  <script>
-      // Simple CSV parsing function
-      function parseCSV(text) {
-          const lines = text.trim().split('\n');
-          return lines.map(line => line.split(','));
-      }
-
-      // Build HTML table from 2D array
-      function buildTable(data) {
-          const table = document.createElement('table');
-          table.border = 1;
-
-          data.forEach((row, i) => {
-              const tr = document.createElement('tr');
-              row.forEach(cell => {
-                  const cellEl = document.createElement(i === 0 ? 'th' : 'td');
-                  cellEl.textContent = cell;
-                  tr.appendChild(cellEl);
-              });
-              table.appendChild(tr);
-          });
-
-          return table;
-      }
-
-      // Fetch CSV and render on load
-      window.addEventListener('DOMContentLoaded', () => {
-          fetch('/metadata-output.csv') // Adjust path if needed
-              .then(response => {
-                  if (!response.ok) throw new Error("Failed to fetch CSV");
-                  return response.text();
-              })
-              .then(text => {
-                  const data = parseCSV(text);
-                  const table = buildTable(data);
-                  document.getElementById('csv-table-container').appendChild(table);
-              })
-              .catch(err => {
-                  console.error(err);
-                  document.getElementById('csv-table-container').textContent = 'Error loading CSV';
-              });
-
-          fetch('/info.csv') // adjust path if needed
-              .then(response => {
-                  if (!response.ok) throw new Error("Failed to fetch CSV");
-                  return response.text();
-              })
-              .then(text => {
-                  const data = parseCSV(text);
-                  const table = buildTable(data);
-                  document.getElementById('info-table-container').appendChild(table);
-              })
-              .catch(err => {
-                  document.getElementById('info-table-container').textContent = 'Error loading info.csv';
-                  console.error(err);
-              });
-      });
-  </script>
 
   </body>
 </html>

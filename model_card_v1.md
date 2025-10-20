@@ -1,7 +1,7 @@
 # Heart Disease Decision Tree Model Card
 
 **Model version:** v1  
-**Training date:** 2025-10-15  
+**Training date:** 2025-10-20  
 
 ### Best Params
 {'dt__max_depth': 6, 'dt__min_samples_leaf': 1}
