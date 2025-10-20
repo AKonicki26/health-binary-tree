@@ -3,6 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import MetadataTable from "./Components/Metadata/MetadataTable.tsx";
+import Visualization from "./Components/Visualization/Visualization.tsx";
 
 function App() {
   const [count, setCount] = useState(0)
@@ -29,7 +30,14 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
-        <MetadataTable csvPath="/metadata.csv" title="Dataset Statistics" />
+      
+      <Visualization 
+        imagePath="/bp-analysis.png" 
+        title="Blood Pressure Analysis"
+        description="Distribution of COVID-19 cases across different blood pressure ranges. The data shows relatively consistent positive rates across all ranges."
+      />
+      
+      <MetadataTable csvPath="/metadata.csv" title="Dataset Statistics" />
     </>
   )
 }

@@ -3,12 +3,15 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "generate-viz": "python ../visualization.py",
+    "dev:full": "npm run generate-viz && npm run dev"
   },
+
   "dependencies": {
     "pyodide": "^0.28.3",
     "react": "^19.1.1",
