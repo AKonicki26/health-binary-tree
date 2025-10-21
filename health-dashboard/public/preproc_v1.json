@@ -1,0 +1,426 @@
+{
+  "numeric": [
+    "Age",
+    "Blood_Pressure",
+    "Heart_Rate",
+    "Comorbidity_Count",
+    "Hospitalization_Days"
+  ],
+  "categorical": [
+    "Fever",
+    "Cough",
+    "Sore_Throat",
+    "Fatigue",
+    "Headache",
+    "Breathlessness",
+    "Loss_of_Smell_Taste",
+    "Diarrhea",
+    "Chest_Pain",
+    "Body_Ache",
+    "Runny_Nose",
+    "Vomiting",
+    "Diabetes",
+    "Hypertension",
+    "Asthma",
+    "Obesity",
+    "Smoking",
+    "Vaccinated",
+    "Travel_History",
+    "Contact_with_Positive",
+    "ICU_Admission",
+    "Is_Male",
+    "Is_Female",
+    "Gender_Other"
+  ],
+  "numeric_imputation": {
+    "Age": 50.0,
+    "Blood_Pressure": 130.0,
+    "Heart_Rate": 90.0,
+    "Comorbidity_Count": 2.0,
+    "Hospitalization_Days": 15.0
+  },
+  "numeric_ranges_train": {
+    "Age": {
+      "min": 1.0,
+      "max": 99.0
+    },
+    "Blood_Pressure": {
+      "min": 80.0,
+      "max": 179.0
+    },
+    "Heart_Rate": {
+      "min": 60.0,
+      "max": 119.0
+    },
+    "Comorbidity_Count": {
+      "min": 0.0,
+      "max": 4.0
+    },
+    "Hospitalization_Days": {
+      "min": 0.0,
+      "max": 29.0
+    }
+  },
+  "categorical_vocabulary": {
+    "Fever": [
+      0,
+      1
+    ],
+    "Cough": [
+      0,
+      1
+    ],
+    "Sore_Throat": [
+      0,
+      1
+    ],
+    "Fatigue": [
+      0,
+      1
+    ],
+    "Headache": [
+      0,
+      1
+    ],
+    "Breathlessness": [
+      0,
+      1
+    ],
+    "Loss_of_Smell_Taste": [
+      0,
+      1
+    ],
+    "Diarrhea": [
+      0,
+      1
+    ],
+    "Chest_Pain": [
+      0,
+      1
+    ],
+    "Body_Ache": [
+      0,
+      1
+    ],
+    "Runny_Nose": [
+      0,
+      1
+    ],
+    "Vomiting": [
+      0,
+      1
+    ],
+    "Diabetes": [
+      0,
+      1
+    ],
+    "Hypertension": [
+      0,
+      1
+    ],
+    "Asthma": [
+      0,
+      1
+    ],
+    "Obesity": [
+      0,
+      1
+    ],
+    "Smoking": [
+      0,
+      1
+    ],
+    "Vaccinated": [
+      0,
+      1
+    ],
+    "Travel_History": [
+      0,
+      1
+    ],
+    "Contact_with_Positive": [
+      0,
+      1
+    ],
+    "ICU_Admission": [
+      0,
+      1
+    ],
+    "Is_Male": [
+      0,
+      1
+    ],
+    "Is_Female": [
+      0,
+      1
+    ],
+    "Gender_Other": [
+      0,
+      1
+    ]
+  },
+  "final_feature_order": [
+    {
+      "source": "Age",
+      "kind": "numeric"
+    },
+    {
+      "source": "Blood_Pressure",
+      "kind": "numeric"
+    },
+    {
+      "source": "Heart_Rate",
+      "kind": "numeric"
+    },
+    {
+      "source": "Comorbidity_Count",
+      "kind": "numeric"
+    },
+    {
+      "source": "Hospitalization_Days",
+      "kind": "numeric"
+    },
+    {
+      "source": "Fever",
+      "kind": "onehot",
+      "category": 0
+    },
+    {
+      "source": "Fever",
+      "kind": "onehot",
+      "category": 1
+    },
+    {
+      "source": "Cough",
+      "kind": "onehot",
+      "category": 0
+    },
+    {
+      "source": "Cough",
+      "kind": "onehot",
+      "category": 1
+    },
+    {
+      "source": "Sore_Throat",
+      "kind": "onehot",
+      "category": 0
+    },
+    {
+      "source": "Sore_Throat",
+      "kind": "onehot",
+      "category": 1
+    },
+    {
+      "source": "Fatigue",
+      "kind": "onehot",
+      "category": 0
+    },
+    {
+      "source": "Fatigue",
+      "kind": "onehot",
+      "category": 1
+    },
+    {
+      "source": "Headache",
+      "kind": "onehot",
+      "category": 0
+    },
+    {
+      "source": "Headache",
+      "kind": "onehot",
+      "category": 1
+    },
+    {
+      "source": "Breathlessness",
+      "kind": "onehot",
+      "category": 0
+    },
+    {
+      "source": "Breathlessness",
+      "kind": "onehot",
+      "category": 1
+    },
+    {
+      "source": "Loss_of_Smell_Taste",
+      "kind": "onehot",
+      "category": 0
+    },
+    {
+      "source": "Loss_of_Smell_Taste",
+      "kind": "onehot",
+      "category": 1
+    },
+    {
+      "source": "Diarrhea",
+      "kind": "onehot",
+      "category": 0
+    },
+    {
+      "source": "Diarrhea",
+      "kind": "onehot",
+      "category": 1
+    },
+    {
+      "source": "Chest_Pain",
+      "kind": "onehot",
+      "category": 0
+    },
+    {
+      "source": "Chest_Pain",
+      "kind": "onehot",
+      "category": 1
+    },
+    {
+      "source": "Body_Ache",
+      "kind": "onehot",
+      "category": 0
+    },
+    {
+      "source": "Body_Ache",
+      "kind": "onehot",
+      "category": 1
+    },
+    {
+      "source": "Runny_Nose",
+      "kind": "onehot",
+      "category": 0
+    },
+    {
+      "source": "Runny_Nose",
+      "kind": "onehot",
+      "category": 1
+    },
+    {
+      "source": "Vomiting",
+      "kind": "onehot",
+      "category": 0
+    },
+    {
+      "source": "Vomiting",
+      "kind": "onehot",
+      "category": 1
+    },
+    {
+      "source": "Diabetes",
+      "kind": "onehot",
+      "category": 0
+    },
+    {
+      "source": "Diabetes",
+      "kind": "onehot",
+      "category": 1
+    },
+    {
+      "source": "Hypertension",
+      "kind": "onehot",
+      "category": 0
+    },
+    {
+      "source": "Hypertension",
+      "kind": "onehot",
+      "category": 1
+    },
+    {
+      "source": "Asthma",
+      "kind": "onehot",
+      "category": 0
+    },
+    {
+      "source": "Asthma",
+      "kind": "onehot",
+      "category": 1
+    },
+    {
+      "source": "Obesity",
+      "kind": "onehot",
+      "category": 0
+    },
+    {
+      "source": "Obesity",
+      "kind": "onehot",
+      "category": 1
+    },
+    {
+      "source": "Smoking",
+      "kind": "onehot",
+      "category": 0
+    },
+    {
+      "source": "Smoking",
+      "kind": "onehot",
+      "category": 1
+    },
+    {
+      "source": "Vaccinated",
+      "kind": "onehot",
+      "category": 0
+    },
+    {
+      "source": "Vaccinated",
+      "kind": "onehot",
+      "category": 1
+    },
+    {
+      "source": "Travel_History",
+      "kind": "onehot",
+      "category": 0
+    },
+    {
+      "source": "Travel_History",
+      "kind": "onehot",
+      "category": 1
+    },
+    {
+      "source": "Contact_with_Positive",
+      "kind": "onehot",
+      "category": 0
+    },
+    {
+      "source": "Contact_with_Positive",
+      "kind": "onehot",
+      "category": 1
+    },
+    {
+      "source": "ICU_Admission",
+      "kind": "onehot",
+      "category": 0
+    },
+    {
+      "source": "ICU_Admission",
+      "kind": "onehot",
+      "category": 1
+    },
+    {
+      "source": "Is_Male",
+      "kind": "onehot",
+      "category": 0
+    },
+    {
+      "source": "Is_Male",
+      "kind": "onehot",
+      "category": 1
+    },
+    {
+      "source": "Is_Female",
+      "kind": "onehot",
+      "category": 0
+    },
+    {
+      "source": "Is_Female",
+      "kind": "onehot",
+      "category": 1
+    },
+    {
+      "source": "Gender_Other",
+      "kind": "onehot",
+      "category": 0
+    },
+    {
+      "source": "Gender_Other",
+      "kind": "onehot",
+      "category": 1
+    }
+  ],
+  "preproc_version": "v1",
+  "trained_on": "2025-10-21"
+}
