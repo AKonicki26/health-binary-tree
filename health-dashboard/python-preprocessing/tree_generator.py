@@ -12,12 +12,15 @@ from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import OneHotEncoder
+from sklearn import tree
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import (
     roc_auc_score, average_precision_score, precision_recall_curve,
     confusion_matrix, precision_score, recall_score, f1_score
 )
 import kagglehub
+
+import matplotlib.pyplot as plt
 warnings.filterwarnings('ignore')
 
 
@@ -32,35 +35,67 @@ def download_dataset():
 
 
 def load_and_clean_data(raw_data_path):
-    """Load and clean the raw dataset"""
+    """Load, clean, and augment the raw dataset for deeper tree exploration"""
     print("\n=== Loading RAW data ===")
     raw_data = pd.read_csv(raw_data_path)
     print(f"Raw data shape: {raw_data.shape}")
     print(f"Missing values: {raw_data.isnull().sum().sum()} total")
-    
-    print("\n=== Cleaning Data ===")
-    
-    # Drop rows with missing values
+
+    print("\n=== Cleaning & Augmenting Data ===")
+
     data = raw_data.copy()
+
+    # Replace boolean values with integers
+    data = data.replace({False: 0, True: 1})
+
+    # Identify binary columns (values only 0/1 or NaN)
+    binary_cols = [
+        c for c in data.columns
+        if data[c].dropna().isin([0, 1]).all()
+    ]
+    print(f"Detected {len(binary_cols)} binary columns: {binary_cols}")
+
+    # Fill missing binary values with random 0/1 instead of dropping rows
+    for col in binary_cols:
+        na_mask = data[col].isna()
+        n_missing = na_mask.sum()
+        if n_missing > 0:
+            data.loc[na_mask, col] = np.random.randint(0, 2, size=n_missing)
+            print(f"Filled {n_missing} missing values in '{col}' with random 0/1")
+
+    # Drop rows with any remaining NaN (non-binary columns)
     data.dropna(inplace=True)
-    print(f"After dropping NaN: {data.shape}")
-    
-    # Replace boolean values
-    data = data.replace(False, 0)
-    data = data.replace(True, 1)
-    
+
+    # Add small random noise to binary values to make splits less trivial
+    flip_rate = 0.05  # 5% of binary values flipped
+    rng = np.random.default_rng(42)
+    for col in binary_cols:
+        flip_mask = rng.random(len(data)) < flip_rate
+        n_flipped = flip_mask.sum()
+        data.loc[flip_mask, col] = 1 - data.loc[flip_mask, col]
+        if n_flipped > 0:
+            print(f"Introduced noise: flipped {n_flipped} values in '{col}' ({flip_rate*100:.1f}%)")
+
+    # Limit dataset for demo speed
+    data = data.head(5000)
+
     # Create gender dummy variables
-    data["Is_Male"] = (data["Gender"] == "Male").astype(int)
-    data["Is_Female"] = (data["Gender"] == "Female").astype(int)
-    data["Gender_Other"] = (data["Gender"] == "Other").astype(int)
-    
-    # Drop unnecessary columns
-    data = data.drop(["Patient_ID", "Gender", "Name"], axis=1)
-    
-    print(f"Final cleaned data shape: {data.shape}")
+    if "Gender" in data.columns:
+        data["Is_Male"] = (data["Gender"] == "Male").astype(int)
+        data["Is_Female"] = (data["Gender"] == "Female").astype(int)
+        data["Gender_Other"] = (data["Gender"] == "Other").astype(int)
+        data = data.drop("Gender", axis=1)
+
+    # Drop non-informative columns
+    for col in ["Patient_ID", "Name"]:
+        if col in data.columns:
+            data = data.drop(col, axis=1)
+
+    print(f"\nFinal cleaned data shape: {data.shape}")
     print(f"Columns: {list(data.columns)}")
-    
+
     return data
+
 
 
 def save_cleaned_data(data):
@@ -171,11 +206,11 @@ def train_decision_tree(X, y, preprocessor):
     # Instead of grid search, use fixed parameters that encourage growth
     dt = DecisionTreeClassifier(
         random_state=42,
-        max_depth=10,           # Force depth of 10
-        min_samples_split=200,  # Reasonable minimum
-        min_samples_leaf=100,   # Reasonable minimum
-        min_impurity_decrease=0.0001,  # Allow small improvements
-        class_weight='balanced'  # Handle class imbalance
+        max_depth=None,          # Let it grow until pure or min_samples conditions
+        min_samples_split=2,     # Default: split aggressively
+        min_samples_leaf=1,      # Default: allow small leaves
+        min_impurity_decrease=0.0,
+        class_weight=None        # Remove balancing unless classes are severely imbalanced
     )
     
     pipe = Pipeline([
@@ -210,6 +245,26 @@ def train_decision_tree(X, y, preprocessor):
     indices = np.argsort(importances)[::-1][:10]
     for i, idx in enumerate(indices):
         print(f"  {i+1}. {feature_names[idx]}: {importances[idx]:.4f}")
+
+    print(f"\nTree depth: {dt_est.get_depth()}")
+    print(f"Number of leaves: {dt_est.get_n_leaves()}")
+    print(f"Number of nodes: {dt_est.tree_.node_count}")
+    print("\nFeature importances (top 15):")
+    for name, imp in sorted(zip(preprocessor.get_feature_names_out(), dt_est.feature_importances_), key=lambda x: x[1], reverse=True)[:15]:
+        print(f"  {name:<30} {imp:.4f}")
+
+
+    # Visualize the tree
+    plt.figure(figsize=(20, 10))
+    tree.plot_tree(
+        dt_est,
+        feature_names=preprocessor.get_feature_names_out(),
+        class_names=["No COVID", "COVID"],
+        filled=True,
+        max_depth=4  # Show only top few levels for readability
+    )
+    plt.title("Decision Tree (Top 4 Levels)")
+    plt.show()
     
     return best_pipe, best_params, X_trainval, X_test, y_trainval, y_test
 
@@ -438,6 +493,10 @@ def main():
     save_artifacts(preproc_manifest, dt_export, model_card, golden)
 
     print("\n=== Pipeline Complete! ===")
+
+
+
+
 
 
 if __name__ == "__main__":

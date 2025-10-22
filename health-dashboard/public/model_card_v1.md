@@ -8,17 +8,17 @@
 
 ### Metrics (Test Set)
 {
-  "roc_auc": 1.0,
-  "pr_auc": 1.0,
-  "precision": 0.7825222001178079,
+  "roc_auc": 0.6983439234974984,
+  "pr_auc": 0.8315550664357139,
+  "precision": 0.746,
   "recall": 1.0,
-  "f1": 0.8779943386579876,
+  "f1": 0.854524627720504,
   "specificity": 0.0,
   "confusion_matrix": {
     "tn": 0,
-    "fp": 19568,
+    "fp": 254,
     "fn": 0,
-    "tp": 70409
+    "tp": 746
   }
 }
 
