@@ -233,9 +233,16 @@ def prepare_comorbidity_data(data):
     # Create comorbidity data
     cmbd_data = data[["Comorbidity_Count", "Is_Covid_True"]].copy()
 
-    # Define comorbidity labels
+    # Define comorbidity labels (0–4)
     comorbidity_labels = [0, 1, 2, 3, 4]
 
+    # Cap comorbidity count at 4 (everything 4+ gets grouped as 4)
+    cmbd_data["Comorbidity_Count"] = cmbd_data["Comorbidity_Count"].clip(upper=4)
+
+    # Create a categorical range column for easy grouping
+    cmbd_data["cmbd_range"] = cmbd_data["Comorbidity_Count"].astype(int)
+
+    print("✓ Added 'cmbd_range' column (values 0–4)")
     return cmbd_data, comorbidity_labels
 
 
@@ -243,12 +250,12 @@ def calculate_cmbd_statistics(cmbd_data, comorbidity_labels):
     """Calculate COVID statistics by comorbidity range"""
     print("\n=== Calculating Statistics ===")
 
-    # Count total, positive, and negative entries
+    # Count total, positive, and negative entries per range
     total_counts = cmbd_data['cmbd_range'].value_counts().sort_index()
     positive_counts = cmbd_data[cmbd_data['Is_Covid_True'] == 1]['cmbd_range'].value_counts().sort_index()
     negative_counts = total_counts - positive_counts
 
-    # Reindex to include all bins
+    # Reindex to include all defined bins (0–4)
     total_counts = total_counts.reindex(comorbidity_labels, fill_value=0)
     positive_counts = positive_counts.reindex(comorbidity_labels, fill_value=0)
     negative_counts = negative_counts.reindex(comorbidity_labels, fill_value=0)
@@ -319,14 +326,12 @@ def create_comorbidity_visualization(data):
 
     print("\n✓ Comorbidity Visualization Complete!")
 
+
 def create_age_visualization(data):
     """Create age visualization - orchestrates all age-related functions"""
     print("\n" + "=" * 60)
     print("AGE VISUALIZATION")
     print("=" * 60)
-
-    data_csv_location = "./input.csv"
-    data = pd.read_csv(data_csv_location)
 
     print("=== Data loaded from cleaned input.csv ===")
     print(f"Shape: {data.shape}")
@@ -358,7 +363,7 @@ def create_age_visualization(data):
     plt.grid(axis="y", linestyle="--", alpha=0.3)
 
     # Save the plot to the public folder
-    output_path = "./health-dashboard/public/age-analysis.png"
+    output_path = "../public/age-analysis.png"
     plt.savefig(output_path, dpi=150, bbox_inches='tight', facecolor='white')
     print(f"\n✓ Chart saved to: {output_path}")
 

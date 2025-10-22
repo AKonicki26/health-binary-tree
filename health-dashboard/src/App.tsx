@@ -1,13 +1,9 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import MetadataTable from "./Components/Metadata/MetadataTable.tsx";
 import Visualization from "./Components/Visualization/Visualization.tsx";
 import Predictor from "./Components/Predictor/Predictor.tsx";
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
