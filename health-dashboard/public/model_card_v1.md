@@ -1,10 +1,10 @@
 # Heart Disease Decision Tree Model Card
 
 **Model version:** v1  
-**Training date:** 2025-10-21  
+**Training date:** 2025-10-22  
 
 ### Best Params
-{'dt__max_depth': 6, 'dt__min_samples_leaf': 1}
+{'dt__max_depth': 10, 'dt__min_samples_leaf': 100, 'dt__min_samples_split': 200, 'dt__min_impurity_decrease': 0.0001, 'dt__class_weight': 'balanced'}
 
 ### Metrics (Test Set)
 {

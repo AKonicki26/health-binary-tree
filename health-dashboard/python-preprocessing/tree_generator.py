@@ -167,30 +167,49 @@ def train_decision_tree(X, y, preprocessor):
         X, y, test_size=0.2, random_state=42, stratify=y
     )
     
-    # Decision Tree with hyperparameter search
-    dt = DecisionTreeClassifier(random_state=42)
+    # For educational purposes, force a deeper tree
+    # Instead of grid search, use fixed parameters that encourage growth
+    dt = DecisionTreeClassifier(
+        random_state=42,
+        max_depth=10,           # Force depth of 10
+        min_samples_split=200,  # Reasonable minimum
+        min_samples_leaf=100,   # Reasonable minimum
+        min_impurity_decrease=0.0001,  # Allow small improvements
+        class_weight='balanced'  # Handle class imbalance
+    )
     
     pipe = Pipeline([
         ("pre", preprocessor),
         ("dt", dt)
     ])
     
-    param_grid = {
-        "dt__max_depth": [3, 4, 5, 6, None],
-        "dt__min_samples_leaf": [1, 2, 5, 10]
+    # Fit without grid search
+    pipe.fit(X_trainval, y_trainval)
+    
+    best_pipe = pipe
+    best_params = {
+        "dt__max_depth": 10,
+        "dt__min_samples_leaf": 100,
+        "dt__min_samples_split": 200,
+        "dt__min_impurity_decrease": 0.0001,
+        "dt__class_weight": 'balanced'
     }
-    cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
     
-    grid = GridSearchCV(
-        pipe, param_grid, cv=cv,
-        scoring="f1", n_jobs=-1
-    )
-    grid.fit(X_trainval, y_trainval)
+    print(f"Parameters used: {best_params}")
     
-    best_pipe = grid.best_estimator_
-    best_params = grid.best_params_
+    # Print tree info
+    dt_est = best_pipe.named_steps["dt"]
+    print(f"Tree depth: {dt_est.get_depth()}")
+    print(f"Number of leaves: {dt_est.get_n_leaves()}")
+    print(f"Number of nodes: {dt_est.tree_.node_count}")
     
-    print(f"Best parameters: {best_params}")
+    # Print feature importances to see what features matter
+    print("\nTop 10 Most Important Features:")
+    feature_names = preprocessor.get_feature_names_out()
+    importances = dt_est.feature_importances_
+    indices = np.argsort(importances)[::-1][:10]
+    for i, idx in enumerate(indices):
+        print(f"  {i+1}. {feature_names[idx]}: {importances[idx]:.4f}")
     
     return best_pipe, best_params, X_trainval, X_test, y_trainval, y_test
 

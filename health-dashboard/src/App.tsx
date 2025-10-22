@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import MetadataTable from "./Components/Metadata/MetadataTable.tsx";
 import Visualization from "./Components/Visualization/Visualization.tsx";
+import Predictor from "./Components/Predictor/Predictor.tsx";
 
 function App() {
   const [count, setCount] = useState(0)
@@ -18,7 +19,11 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-      <h1>Vite + React</h1>
+      <h1>COVID-19 Health Dashboard</h1>
+      
+      {/* COVID-19 Risk Predictor */}
+      <Predictor />
+      
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
@@ -27,9 +32,6 @@ function App() {
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
       
       <Visualization 
         imagePath="/bp-analysis.png" 
@@ -38,6 +40,10 @@ function App() {
       />
       
       <MetadataTable csvPath="/metadata.csv" title="Dataset Statistics" />
+      
+      <p className="read-the-docs">
+        Click on the Vite and React logos to learn more
+      </p>
     </>
   )
 }
