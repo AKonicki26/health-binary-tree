@@ -26,13 +26,13 @@ function App() {
 
       <Visualization
         imagePath="/cmbd-analysis.png"
-        title="Blood Pressure Analysis"
+        title="Comorbidity Analysis"
         description="Distribution of COVID-19 cases across different heart rate ranges. The data shows relatively consistent positive rates across all ranges."
       />
 
       <Visualization
         imagePath="/hr-analysis.png"
-        title="Blood Pressure Analysis"
+        title="Heart Rate Analysis"
         description="Distribution of COVID-19 cases across different comorbidity ranges. The data shows relatively consistent positive rates across all ranges."
       />
 

@@ -195,9 +195,9 @@ def create_hr_visualization(heart_rate_labels, positive_percent, negative_percen
 
 def print_hr_summary(hr_data, heart_rate_labels, positive_percent):
     """Print summary statistics"""
-    print("\n=== Blood Pressure Analysis Summary ===")
+    print("\n=== Heart Rate Analysis Summary ===")
     print(f"Total records analyzed: {len(hr_data)}")
-    print(f"\nCOVID Positive Rate by Blood Pressure Range:")
+    print(f"\nCOVID Positive Rate by Heart Rate Range:")
     for label, pct in zip(heart_rate_labels, positive_percent):
         print(f"  {label}: {pct:.1%}")
 
@@ -218,10 +218,10 @@ def create_heart_rate_visualization(data):
 
     # Create visualization
     output_path = "../public/hr-analysis.png"
-    create_bp_visualization(heart_rate_labels, positive_percent, negative_percent, output_path)
+    create_hr_visualization(heart_rate_labels, positive_percent, negative_percent, output_path)
 
     # Print summary
-    print_bp_summary(hr_data, heart_rate_labels, positive_percent)
+    print_hr_summary(hr_data, heart_rate_labels, positive_percent)
 
     print("\n✓ Heart Rate Visualization Complete!")
 
@@ -358,8 +358,8 @@ def create_age_visualization(data):
     plt.hist(cmbd_data["Age"], bins=100)
 
     plt.title("Age Distribution of Covid-19 Survey Respondants", fontsize=14, fontweight='bold')
-    plt.xlabel("Person Count", fontsize=12)
-    plt.ylabel("Age", fontsize=12)
+    plt.xlabel("Age", fontsize=12)
+    plt.ylabel("Person Count", fontsize=12)
     plt.grid(axis="y", linestyle="--", alpha=0.3)
 
     # Save the plot to the public folder
