@@ -33,8 +33,8 @@
     "Gender_Other"
   ],
   "numeric_imputation": {
-    "Age": 49.0,
-    "Blood_Pressure": 129.0,
+    "Age": 50.0,
+    "Blood_Pressure": 130.0,
     "Heart_Rate": 89.0,
     "Fever": 0.0,
     "Cough": 0.0,

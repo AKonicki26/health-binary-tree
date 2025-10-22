@@ -77,7 +77,7 @@ def load_and_clean_data(raw_data_path):
             print(f"Introduced noise: flipped {n_flipped} values in '{col}' ({flip_rate*100:.1f}%)")
 
     # Limit dataset for demo speed
-    data = data.head(5000)
+    #data = data.head(5000)
 
     # Create gender dummy variables
     if "Gender" in data.columns:
@@ -264,7 +264,7 @@ def train_decision_tree(X, y, preprocessor):
         max_depth=4  # Show only top few levels for readability
     )
     plt.title("Decision Tree (Top 4 Levels)")
-    plt.show()
+    #plt.show()
     
     return best_pipe, best_params, X_trainval, X_test, y_trainval, y_test
 
