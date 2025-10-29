@@ -26,39 +26,52 @@ const PredictorForm: React.FC<PredictorFormProps> = ({ onSubmit }) => {
             .then(res => res.json())
             .then(data => {
                 const featureList: Feature[] = [];
-                
-                // Add numeric features
+
+                // Add numeric features - check if they're binary (0/1 only)
                 data.numeric.forEach((name: string) => {
-                    featureList.push({
-                        name,
-                        type: 'numeric',
-                        min: data.numeric_ranges_train[name].min,
-                        max: data.numeric_ranges_train[name].max,
-                        default: data.numeric_imputation[name]
-                    });
+                    const min = data.numeric_ranges_train[name].min;
+                    const max = data.numeric_ranges_train[name].max;
+
+                    // If numeric field only has 0 and 1, treat it as binary
+                    const isBinary = min === 0 && max === 1;
+
+                    if (isBinary) {
+                        featureList.push({
+                            name,
+                            type: 'binary'
+                        });
+                    } else {
+                        featureList.push({
+                            name,
+                            type: 'numeric',
+                            min: min,
+                            max: max,
+                            default: data.numeric_imputation[name]
+                        });
+                    }
                 });
-                
+
                 // Add categorical features
                 data.categorical.forEach((name: string) => {
                     const options = data.categorical_vocabulary[name].filter((v: any) => v !== null);
-                    
+
                     // Skip gender-related fields (we'll handle them separately)
                     if (name === 'Is_Male' || name === 'Is_Female' || name === 'Gender_Other') {
                         return;
                     }
-                    
-                    // Check if it's a binary field (only has 0 and 1 as options)
-                    const isBinary = options.length === 2 && 
-                                    options.includes(0) && 
-                                    options.includes(1);
-                    
+
+                    // ALL categorical fields with only 0 and 1 are binary (displayed as checkboxes)
+                    const isBinary = options.length === 2 &&
+                        options.includes(0) &&
+                        options.includes(1);
+
                     featureList.push({
                         name,
                         type: isBinary ? 'binary' : 'categorical',
                         options: isBinary ? undefined : options
                     });
                 });
-                
+
                 setFeatures(featureList);
                 setLoading(false);
             })
